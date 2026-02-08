@@ -76,12 +76,11 @@ k8_hero
 ## How to run locally (Minikube)
 
 1) Start Minikube
-
+```md
 minikube start
-
+```
 2) Build application Docker images
 ```md
-```bash
 docker build -t my-nginx -f apps/nginx/nginx-Dockerfile apps/nginx
 docker build -t my-php-fpm -f apps/php/php-Dockerfile apps/php
 ```
@@ -109,9 +108,9 @@ kubectl apply -f monitoring/grafana/grafana-secret.yaml
 kubectl rollout restart deployment/grafana
 ```
 6) Access Grafana UI
-
+```md
 minikube service grafana
-
+```
 Login:
 - user: admin
 - password: value defined in the secret
