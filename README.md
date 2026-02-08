@@ -34,6 +34,7 @@ Monitoring stack:
 ## Repository structure
 
 This is how the project looks (example output of: tree -L 4)
+```text
 
 k8_hero
 ├── apps
@@ -61,7 +62,7 @@ k8_hero
 ├── scripts
 │   └── deploy.sh
 └── README.md
-
+```
 ---
 
 ## Requirements
@@ -79,29 +80,34 @@ k8_hero
 minikube start
 
 2) Build application Docker images
-
+```md
+```bash
 docker build -t my-nginx -f apps/nginx/nginx-Dockerfile apps/nginx
 docker build -t my-php-fpm -f apps/php/php-Dockerfile apps/php
-
+```
 3) Deploy application stack
-
+```md
 kubectl apply -f apps/nginx
 kubectl apply -f apps/php
-
+```
 4) Deploy monitoring stack
-
+```md
 kubectl apply -f monitoring/node-exporter
 kubectl apply -f monitoring/prometheus
 kubectl apply -f monitoring/grafana
-
+```
 5) Create Grafana admin credentials (Secret)
-
+```bash
 cp monitoring/grafana/grafana-secret.example.yaml monitoring/grafana/grafana-secret.yaml
 nano monitoring/grafana/grafana-secret.yaml
+```
+```text
 Change password "CHANGE_ME"
+```
+```md
 kubectl apply -f monitoring/grafana/grafana-secret.yaml
 kubectl rollout restart deployment/grafana
-
+```
 6) Access Grafana UI
 
 minikube service grafana
